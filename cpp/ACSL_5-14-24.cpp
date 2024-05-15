@@ -74,24 +74,25 @@ vector<int> util_vectint(string& input, int flag)
     return things;
 }
 
-int util_useless(int sum) //pasted from unknown cheats...
+int util_miscInt(int sum) //pasted from unknown cheats...
 {
     
     
     
     // +------------------------------------------------------+
-    // | find smallest powah of 2 that is >= the given number |
+    // |                      multi tool                      |
     // +------------------------------------------------------+
     
+
     int result  = 1;
     
     while (result < sum)
     {
-        result *= 2;
+        result  *= 2;
     }
     
     return result;
-    
+
 }
 
 /*
@@ -145,34 +146,9 @@ string play2248(string boardValues, string pathValues)
     
     
     
-    //-------------------------------[main]-------------------------------\\
+    //-------------------------------[functions]-------------------------------\\
     
-    
-    
-    for( int i = 0; i < 8; i++) 
-    {
-        cout << "\n";
-        
-        for( int j = 0; j < 5; j++)
-        { 
-            cout << pBoardVec[i][j] << " ";
-
-        }
-    }
-    
-    cout << "\n\n";
-    
-    for( int i = 0; i < 8; i++) 
-    {
-        cout << pValVec[i] << " ";
-    }
-    
-    cout << "\n\n";
-    
-    
-    
-    //<div> sum calc
-    
+    //<h1> summerupper
     for (int i = 0; i < pValVec.size(); i++)
     {   
         
@@ -193,24 +169,26 @@ string play2248(string boardValues, string pathValues)
         
     }
     
-    //<div\>
+    //<h1\>
     
     //-------------------------------[cleanser]-------------------------------\\
 
     
-    cleansedVec[pValVec.back() / 10][pValVec.back() % 10] = util_useless(sumOfTiles);
+    cleansedVec[(pValVec.back() / 10) - 1][(pValVec.back() % 10) - 1] = util_miscInt(sumOfTiles);
+    
+    
+    
     
     
     //-------------------------------[debuggah]------------------------------\\
     
-        cout << "----------[ header ]----------"              << endl;
-        
+        cout << "----------[ header ]----------"      << endl;
+        cout << "first step  |  "                        << util_miscInt(sumOfTiles) << endl;
         cout << "----------[ enderr ]----------"      << endl << endl;
 
     return("sum of tiles == " + to_string(sumOfTiles) + "  |   smallestPower == " + to_string(smallestPower));
 }
 
-//yo add dracula theme please...
 
 int main()
 {
