@@ -17,8 +17,6 @@ using namespace std;
 
 vector<vector<int>> util_vectvectint(string input, int flag) 
 {
-    
-
     // +-----------------------------------+------------------------------------------------+
     // |            Information            |                   Reasoning                    |
     // +-----------------------------------+------------------------------------------------+
@@ -32,15 +30,20 @@ vector<vector<int>> util_vectvectint(string input, int flag)
     
     int x;
     while (ss >> x)
+    
     {
+        
         tempVec.push_back(x);
         if(tempVec.size() == 5)
+        
         {
+            
             things.push_back(tempVec);
             tempVec.clear();
+            
         }
+        
     }
-    
     
     return things;
     
@@ -49,16 +52,11 @@ vector<vector<int>> util_vectvectint(string input, int flag)
 
 vector<int> util_vectint(string& input, int flag) 
 {
-    
-    
-
     // +---------------------------------+
     // | what do mexican programmers use |
     // +---------------------------------+
     // | si ++                           |
     // +---------------------------------+
-
-
 
     stringstream    ss(input);
     string          idkthingy;
@@ -66,23 +64,25 @@ vector<int> util_vectint(string& input, int flag)
     
     if(flag == 0)
     {
+        
         while ( getline(ss, idkthingy, ' ' )) 
         {
+            
             things.push_back(stoi(idkthingy));
+            
         } 
+        
     }      
+    
     return things;
+    
 }
 
 int util_miscInt(int sum) //pasted from unknown cheats...
 {
-    
-    
-    
     // +------------------------------------------------------+
     // |                      multi tool                      |
     // +------------------------------------------------------+
-    
 
     int result  = 1;
     
@@ -148,35 +148,50 @@ string play2248(string boardValues, string pathValues)
     
     //-------------------------------[functions]-------------------------------\\
     
+    
+    cout << "//-------------------------------[functions]-------------------------------\\" << endl;
+    
     //<h1> summerupper
     for (int i = 0; i < pValVec.size(); i++)
     {   
-        
         xCoord                                       = (pValVec.at(i)) / 10;
         yCoord                                       = (pValVec.at(i)) % 10;
         sumOfTiles                                   = sumOfTiles += pBoardVec[xCoord - 1][yCoord - 1];
-        
-
-        
-        cout << "--------------------"              << endl;
-        cout << "xCoord == "                        << xCoord << endl;
-        cout << "yCoord == "                        << yCoord << endl;
-        cout << "Current i value == "               << i << endl;
-        cout << "current tile == "                  << pBoardVec[xCoord - 1][yCoord - 1]   << endl; //this line took me fucking 1 hour by the way
-        cout << "Current Sum == "                   << sumOfTiles << endl;
-        cout << "Current smallestPower == "         << smallestPower << endl;
-        cout << "--------------------"      << endl << endl;
-        
     }
     
     //<h1\>
     
     //-------------------------------[cleanser]-------------------------------\\
-
+    
+    cout << "//-------------------------------[cleanser]-------------------------------\\" << endl;
     
     cleansedVec[(pValVec.back() / 10) - 1][(pValVec.back() % 10) - 1] = util_miscInt(sumOfTiles);
     
-    
+    for (int i = 0; i < pValVec.size(); i++)
+    {   
+
+        // +----------------------------------------------+
+        // | this cleanses all the tiles that aren't used |
+        // +----------------------------------------------+
+        
+
+        int cTile                                    = pBoardVec[xCoord - 1][yCoord - 1];
+        xCoord                                       = (pValVec.at(i)) / 10;
+        yCoord                                       = (pValVec.at(i)) % 10;
+        
+        
+        if (pValVec.back() != (yCoord * 10) + (xCoord))
+        {
+            cleansedVec[yCoord - 1][xCoord - 1] = 0;
+            cout << "removed value: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
+            cout << "conconcted xy coordinates were: (" + to_string((yCoord * 10) + (xCoord)) + ")" << endl;
+        }
+        
+        else {
+            cout << "SKIPPED VALUE: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
+        }
+                                          
+    }
     
     
     
@@ -184,6 +199,22 @@ string play2248(string boardValues, string pathValues)
     
         cout << "----------[ header ]----------"      << endl;
         cout << "first step  |  "                        << util_miscInt(sumOfTiles) << endl;
+        for(int i = 0; i < 8; i++)
+        {
+        
+            cout << "\n";
+        
+            for(int j = 0; j < 5; j++)
+            {
+            
+                cout << cleansedVec[i][j] << " ";
+
+            }
+        
+        }
+        
+        cout << "\n\n";
+    
         cout << "----------[ enderr ]----------"      << endl << endl;
 
     return("sum of tiles == " + to_string(sumOfTiles) + "  |   smallestPower == " + to_string(smallestPower));
