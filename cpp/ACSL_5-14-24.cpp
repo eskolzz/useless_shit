@@ -14,6 +14,13 @@ using namespace std;
 
 // im gonna leave the site when i want to wtf are you gonna do about it
 
+//if you got something that says i pasted everything here its because im on a different device and for some reason it doesn't save.
+
+
+
+
+
+
 
 vector<vector<int>> util_vectvectint(string input, int flag) 
 {
@@ -50,6 +57,9 @@ vector<vector<int>> util_vectvectint(string input, int flag)
 }
 
 
+
+
+
 vector<int> util_vectint(string& input, int flag) 
 {
     // +---------------------------------+
@@ -78,6 +88,9 @@ vector<int> util_vectint(string& input, int flag)
     
 }
 
+
+
+
 int util_miscInt(int sum) //pasted from unknown cheats...
 {
     // +------------------------------------------------------+
@@ -95,36 +108,37 @@ int util_miscInt(int sum) //pasted from unknown cheats...
 
 }
 
-/*
-int util_idkwhat2namethis(string input, vector<int> vect) //useless fucking function idk why i made this (there was more than this before)
+bool misc_Bool(int pos, vector<vector<int>> table, string flag)
 {
-    int xCoord   = stoi(input) / 10;
-    int yCoord   = stoi(input) % 10;
     
-    int tempSum  = 0;
-    int temp1    = 0;
-    int temp2    = 0;
+    // +---------------------------------------------------------------------------+
+    // | this function checks if the position in the given vector is valid or not. |
+    // +---------------------------------------------------------------------------+
     
-    int tempArr[8][5];
-    
-    cout << temp2 << endl;
-    
-    cout << "temp1 == " << temp1;
-    cout << "\n" << endl;
-    cout << "temp2 == " << temp2;
-    cout << "\n" << endl;
-    cout << "x == " << xCoord;
-    cout << "\n" << endl;
-    cout << "y == " << yCoord;
-    cout << "\n" << endl;
-    
-    return
-    (
-        tempArr[xCoord][yCoord]
-    );
+    int xCoord                                       = pos / 10;
+    int yCoord                                       = pos % 10;        
+    if ( flag == "posIsValid")
+    {            
+        if( xCoord < 0 || xCoord > table.size() )
+        {
+            return(false);            }
+        }
+         
+        if ( yCoord < 0 || yCoord >= table[yCoord].size() )
+        {
+            return(false);
+        }
+            
+        else 
+        {
+            return true;
+        }
+            
+    {    
     
 }
-*/
+
+
 
 
 string play2248(string boardValues, string pathValues) 
@@ -148,9 +162,6 @@ string play2248(string boardValues, string pathValues)
     
     //-------------------------------[functions]-------------------------------\\
     
-    
-    cout << "//-------------------------------[functions]-------------------------------\\" << endl;
-    
     //<h1> summerupper
     for (int i = 0; i < pValVec.size(); i++)
     {   
@@ -163,9 +174,9 @@ string play2248(string boardValues, string pathValues)
     
     //-------------------------------[cleanser]-------------------------------\\
     
-    cout << "//-------------------------------[cleanser]-------------------------------\\" << endl;
     
-    cleansedVec[(pValVec.back() / 10) - 1][(pValVec.back() % 10) - 1] = util_miscInt(sumOfTiles);
+    cleansedVec[(pValVec.back() / 10) - 1][(pValVec.back() % 10) - 1] = util_miscInt(sumOfTiles); //step uno;
+    
     
     for (int i = 0; i < pValVec.size(); i++)
     {   
@@ -180,18 +191,29 @@ string play2248(string boardValues, string pathValues)
         yCoord                                       = (pValVec.at(i)) % 10;
         
         
-        if (pValVec.back() != (yCoord * 10) + (xCoord))
+        
+        if (xCoord == (pValVec.back() / 10) && yCoord == (pValVec.back() % 10))
         {
-            cleansedVec[yCoord - 1][xCoord - 1] = 0;
-            cout << "removed value: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
-            cout << "conconcted xy coordinates were: (" + to_string((yCoord * 10) + (xCoord)) + ")" << endl;
+            cout << "SKIPPED VALUE: " + to_string(cTile) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
         }
         
         else {
-            cout << "SKIPPED VALUE: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
+            
+            cleansedVec[xCoord - 1][yCoord - 1] = 0;
+            cout << "removed value: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
+            cout << "conconcted xy coordinates were: (" + to_string((xCoord * 10) + (yCoord)) + ")" << endl;
         }
                                           
     }
+    
+    for (int i = 0; i < pValVec.size(); i++)
+    {   
+        
+        xCoord                                       = (pValVec.at(i)) / 10;
+        yCoord                                       = (pValVec.at(i)) % 10;
+        
+    }
+    
     
     
     
@@ -199,19 +221,8 @@ string play2248(string boardValues, string pathValues)
     
         cout << "----------[ header ]----------"      << endl;
         cout << "first step  |  "                        << util_miscInt(sumOfTiles) << endl;
-        for(int i = 0; i < 8; i++)
-        {
         
-            cout << "\n";
-        
-            for(int j = 0; j < 5; j++)
-            {
-            
-                cout << cleansedVec[i][j] << " ";
-
-            }
-        
-        }
+        print_matrix(cleansedVec, 8, 5);
         
         cout << "\n\n";
     
@@ -294,26 +305,6 @@ int main()
                            :..:=#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%+-+                           
                              :...::+#%%@%%%%@%@@@@@@@@@@@@@%%*=%                             
                                ..:....=:---..:..::==*+#+==+*=+*                              
-                                    ::.................-+*/                                   
-//                                                                                                                                         
-//                         /                ###                                                       /                                    
-//                       #/                  ###                                                    #/                                     
-//                       ##                   ##                                                    ##                                     
-//                       ##                   ##       ##                                           ##                                     
-//                       ##                   ##       ##                                           ##                                     
-//     /##       /###    ##  /##      /###    ##        ##    ###    ####      /###      /###       ##  /##      /##  ###  /###     /##    
-//    / ###     / #### / ## / ###    / ###  / ##         ##    ###     ###  / / ###  /  / #### /    ## / ###    / ###  ###/ #### / / ###   
-//   /   ###   ##  ###/  ##/   /    /   ###/  ##         ##     ###     ###/ /   ###/  ##  ###/     ##/   ###  /   ###  ##   ###/ /   ###  
-//  ##    ### ####       ##   /    ##    ##   ##         ##      ##      ## ##    ##  ####          ##     ## ##    ### ##       ##    ### 
-//  ########    ###      ##  /     ##    ##   ##         ##      ##      ## ##    ##    ###         ##     ## ########  ##       ########  
-//  #######       ###    ## ##     ##    ##   ##         ##      ##      ## ##    ##      ###       ##     ## #######   ##       #######   
-//  ##              ###  ######    ##    ##   ##         ##      ##      ## ##    ##        ###     ##     ## ##        ##       ##        
-//  ####    /  /###  ##  ##  ###   ##    ##   ##         ##      /#      /  ##    /#   /###  ##     ##     ## ####    / ##       ####    / 
-//   ######/  / #### /   ##   ### / ######    ### /       ######/ ######/    ####/ ## / #### /      ##     ##  ######/  ###       ######/  
-//    #####      ###/     ##   ##/   ####      ##/         #####   #####      ###   ##   ###/        ##    ##   #####    ###       #####   
-//                                                                                                         /                               
-//                                                                                                        /                                
-//                                                                                                       /                                 
-//                                                                                                      /                                  
+                                    ::.................-+*/                                                           
 
 }
