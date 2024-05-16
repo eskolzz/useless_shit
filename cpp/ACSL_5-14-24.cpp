@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
+
+// | this was my source code for the ACSL juinor division programming problem.  |      finished on may 16 2024      |
+// |----------------------------------------------------------------------------|-----------------------------------|
+// | try not to kill yourself after reading my code (impossible)                | ggwpnore https://nuked.asia/eskol |
+
+
 
 vector<vector<int>> util_vectvectint(string input, int flag) 
 {
@@ -30,6 +36,10 @@ vector<vector<int>> util_vectvectint(string input, int flag)
     return things;
     
 }
+
+
+
+
 
 string util_vectvectint2string(vector<vector<int>> table)
 {
@@ -80,6 +90,7 @@ vector<int> util_vectint(string& input, int flag)
 
 
 
+
 int util_miscInt(int sum) //pasted from unknown cheats...
 {
     // +------------------------------------------------------+
@@ -94,8 +105,11 @@ int util_miscInt(int sum) //pasted from unknown cheats...
     }
     
     return result;
-
 }
+
+
+
+
 
 
 vector<vector<int>> util_dropTiles(vector<vector<int>>& table) 
@@ -130,14 +144,16 @@ vector<vector<int>> util_dropTiles(vector<vector<int>>& table)
     return table;
 }
 
+
+
+
+
 void util_fillTiles(vector<vector<int>>& table)
 {
-    
-    
+     
     // +-------+
     // | 2ezzz |
     // +-------+
-
     
     int numRows = table.size();
     int numCols = table[0].size();
@@ -157,6 +173,10 @@ void util_fillTiles(vector<vector<int>>& table)
         }
     }
 }
+
+
+
+
 
 
 string play2248(string boardValues, string pathValues) 
@@ -225,7 +245,11 @@ string play2248(string boardValues, string pathValues)
     util_fillTiles(cleansedVec);
     
     return util_vectvectint2string(cleansedVec);
+    
 }
+
+
+
 
 
 int main()
