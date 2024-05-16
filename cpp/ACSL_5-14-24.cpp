@@ -56,6 +56,26 @@ vector<vector<int>> util_vectvectint(string input, int flag)
     
 }
 
+string util_vectvectint2string(vector<vector<int>> table)
+{
+    
+    
+    // +---------------------------------------------------------------------+
+    // | last function i have to write fuck this coding problem this was ass |
+    // +---------------------------------------------------------------------+
+    
+    stringstream sigmasigma;
+    
+    for (auto& row : table) 
+    {
+        for (int i : row)
+        {
+            sigmasigma << i << " ";
+        }
+    }
+    return(sigmasigma.str());
+}
+
 
 
 
@@ -143,17 +163,47 @@ vector<vector<int>> util_dropTiles(vector<vector<int>>& table)
     return table;
 }
 
+void util_fillTiles(vector<vector<int>>& table)
+{
+    
+    
+    // +-------+
+    // | 2ezzz |
+    // +-------+
+
+    
+    int numRows = table.size();
+    int numCols = table[0].size();
+    int power   = 8;
+    
+    for (int row = 0; row < numRows; row++)
+    {
+        for (int col = 0; col < numCols; col++)
+        {
+            if(table[row][col] == 0)
+            {
+                table[row][col] = pow(2, power); 
+                power --;
+                
+                if (power < 1) {power = 8;}
+            }
+        }
+    }
+}
+
 
 string play2248(string boardValues, string pathValues) 
 {
     
     //-------------------------------[dec]-------------------------------\\
     
-    int lastTile       = 0;
-    int smallestPower  = 0;
-    int sumOfTiles     = 0;
-    int xCoord         = 0;
-    int yCoord         = 0;
+    int lastTile         = 0;
+    int smallestPower    = 0;
+    int sumOfTiles       = 0;
+    int xCoord           = 0;
+    int yCoord           = 0;
+    
+    string returnString = "";
     
     int finalArr[8][5];
     
@@ -228,14 +278,9 @@ string play2248(string boardValues, string pathValues)
         }
         
     util_dropTiles(cleansedVec);
+    util_fillTiles(cleansedVec);
     
-    
-    
-    //-------------------------------[debuggah]------------------------------\\
-    
-        cout << "----------[ header ]----------"      << endl;
-        cout << "first step  |  "                     << util_miscInt(sumOfTiles) << endl;
-        
+    cout << "\n\n\n";
         for(int i = 0; i < 8; i++)
         {
 
@@ -249,12 +294,8 @@ string play2248(string boardValues, string pathValues)
             }
 
         }
-
-        cout << "\n\n";
-    
-        cout << "----------[ enderr ]----------"      << endl << endl;
-
-    return("sum of tiles == " + to_string(sumOfTiles) + "  |   smallestPower == " + to_string(smallestPower));
+        
+    return util_vectvectint2string(cleansedVec);
 }
 
 
