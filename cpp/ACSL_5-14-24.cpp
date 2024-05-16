@@ -109,53 +109,38 @@ int util_miscInt(int sum) //pasted from unknown cheats...
 }
 
 
-vector<vector<int>> util_dropTiles(vector<vector<int>> table)
+vector<vector<int>> util_dropTiles(vector<vector<int>>& table) 
 {
     
-    vector<vector<int>> cleansedVector = table;
-    bool flag                          = true;
     
-    while(true)
+    // +----------------------------------+
+    // | this took me too long dawg :sob: |
+    // +----------------------------------+
+
+
+    int numRows =    table.size();
+    int numCols = table[0].size();
+    
+    for ( int col = 0; col < numCols; col++ )
     {
+        int lastRow = numRows - 1;
         
-        for(int i = 0; i < 7; i++) //first checky if the table is already sorted, then move on
+        for( int row = numRows - 1; row >= 0; row-- )
         {
-            for(int j = 0; j < 5; j++)
+            if ( table[row][col] != 0 )
             {
-                if(cleansedVector[j][i-1] != 0)
+                if  (row != lastRow )
                 {
                     
-                    cout << "continued thru index (" + to_string(j) + "," + to_string(i) + ")    |    skipped value: " + to_string(cleansedVector[j][i-1]) + " | value under was: " + to_string(cleansedVector[j][i]) << endl;
+                    table[lastRow][col] = table[row][col];
+                    table[row][col] = 0;
                     
-                    continue;
                 }
-                
-                else 
-                {
-                    flag = false;
-                }
+                lastRow--;
             }
         }
-        
-        if (flag)
-        {
-            break;
-        }
-        else 
-        {
-            for(int i = 0; i < 7; i++) //first checky if the table is already sorted, then move on
-            {
-                for(int j = 0; j < 5; j++)
-                {
-                    if(cleansedVector[j][i-1] != 0)
-                    {
-                       cleansedVector[j][i-1] = cleansedVector[j][i];
-                    }
-                }
-            } 
-        }
     }
-    return(cleansedVector);
+    return table;
 }
 
 
@@ -172,6 +157,7 @@ string play2248(string boardValues, string pathValues)
     
     int finalArr[8][5];
     
+    vector<int> removedValues       = {};
     vector<int> pValVec             = util_vectint(pathValues, 0);
     vector<vector<int>> pBoardVec   = util_vectvectint(boardValues, 0);
     vector<vector<int>> cleansedVec = util_vectvectint(boardValues, 0);
@@ -200,7 +186,7 @@ string play2248(string boardValues, string pathValues)
     {   
 
         // +----------------------------------------------+
-        // | this cleanses all the tiles that aren't used |
+        // | this cleanses all the tiles that aren't used | also keeps track of the ones that are.
         // +----------------------------------------------+
         
 
@@ -220,25 +206,35 @@ string play2248(string boardValues, string pathValues)
             cleansedVec[xCoord - 1][yCoord - 1] = 0;
             cout << "removed value: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
             cout << "conconcted xy coordinates were: (" + to_string((xCoord * 10) + (yCoord)) + ")" << endl;
+            removedValues.push_back(((xCoord) * 10) + yCoord);
+            
         }
                                           
     }
-    
-    for (int i = 0; i < pValVec.size(); i++)
-    {   
+    cout << "table before we do some wierd shit to it" << endl;
+
+    for(int i = 0; i < 8; i++)
+        {
+
+            cout << "\n";
+
+            for(int j = 0; j < 5; j++)
+            {
+
+                cout << cleansedVec[i][j] << " ";
+
+            }
+
+        }
         
-        xCoord                                       = (pValVec.at(i)) / 10;
-        yCoord                                       = (pValVec.at(i)) % 10;
-        
-    }
-    
+    util_dropTiles(cleansedVec);
     
     
     
     //-------------------------------[debuggah]------------------------------\\
     
         cout << "----------[ header ]----------"      << endl;
-        cout << "first step  |  "                        << util_miscInt(sumOfTiles) << endl;
+        cout << "first step  |  "                     << util_miscInt(sumOfTiles) << endl;
         
         for(int i = 0; i < 8; i++)
         {
