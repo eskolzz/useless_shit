@@ -248,53 +248,20 @@ string play2248(string boardValues, string pathValues)
         
         if (xCoord == (pValVec.back() / 10) && yCoord == (pValVec.back() % 10))
         {
-            cout << "SKIPPED VALUE: " + to_string(cTile) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
         }
         
         else {
             
             cleansedVec[xCoord - 1][yCoord - 1] = 0;
-            cout << "removed value: " + to_string(cleansedVec[xCoord - 1][yCoord - 1]) + " at index: (" + to_string(xCoord) + "," + to_string(yCoord) + ")" << endl;
-            cout << "conconcted xy coordinates were: (" + to_string((xCoord * 10) + (yCoord)) + ")" << endl;
             removedValues.push_back(((xCoord) * 10) + yCoord);
             
         }
                                           
     }
-    cout << "table before we do some wierd shit to it" << endl;
 
-    for(int i = 0; i < 8; i++)
-        {
-
-            cout << "\n";
-
-            for(int j = 0; j < 5; j++)
-            {
-
-                cout << cleansedVec[i][j] << " ";
-
-            }
-
-        }
-        
     util_dropTiles(cleansedVec);
     util_fillTiles(cleansedVec);
     
-    cout << "\n\n\n";
-        for(int i = 0; i < 8; i++)
-        {
-
-            cout << "\n";
-
-            for(int j = 0; j < 5; j++)
-            {
-
-                cout << cleansedVec[i][j] << " ";
-
-            }
-
-        }
-        
     return util_vectvectint2string(cleansedVec);
 }
 
