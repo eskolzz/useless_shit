@@ -108,37 +108,55 @@ int util_miscInt(int sum) //pasted from unknown cheats...
 
 }
 
-bool misc_Bool(int pos, vector<vector<int>> table, string flag)
+
+vector<vector<int>> util_dropTiles(vector<vector<int>> table)
 {
     
-    // +---------------------------------------------------------------------------+
-    // | this function checks if the position in the given vector is valid or not. |
-    // +---------------------------------------------------------------------------+
+    vector<vector<int>> cleansedVector = table;
+    bool flag                          = true;
     
-    int xCoord                                       = pos / 10;
-    int yCoord                                       = pos % 10;        
-    if ( flag == "posIsValid")
-    {            
-        if( xCoord < 0 || xCoord > table.size() )
+    while(true)
+    {
+        
+        for(int i = 0; i < 7; i++) //first checky if the table is already sorted, then move on
         {
-            return(false);            }
+            for(int j = 0; j < 5; j++)
+            {
+                if(cleansedVector[j][i-1] != 0)
+                {
+                    
+                    cout << "continued thru index (" + to_string(j) + "," + to_string(i) + ")    |    skipped value: " + to_string(cleansedVector[j][i-1]) + " | value under was: " + to_string(cleansedVector[j][i]) << endl;
+                    
+                    continue;
+                }
+                
+                else 
+                {
+                    flag = false;
+                }
+            }
         }
-         
-        if ( yCoord < 0 || yCoord >= table[yCoord].size() )
+        
+        if (flag)
         {
-            return(false);
+            break;
         }
-            
         else 
         {
-            return true;
+            for(int i = 0; i < 7; i++) //first checky if the table is already sorted, then move on
+            {
+                for(int j = 0; j < 5; j++)
+                {
+                    if(cleansedVector[j][i-1] != 0)
+                    {
+                       cleansedVector[j][i-1] = cleansedVector[j][i];
+                    }
+                }
+            } 
         }
-            
-    {    
-    
+    }
+    return(cleansedVector);
 }
-
-
 
 
 string play2248(string boardValues, string pathValues) 
@@ -222,8 +240,20 @@ string play2248(string boardValues, string pathValues)
         cout << "----------[ header ]----------"      << endl;
         cout << "first step  |  "                        << util_miscInt(sumOfTiles) << endl;
         
-        print_matrix(cleansedVec, 8, 5);
-        
+        for(int i = 0; i < 8; i++)
+        {
+
+            cout << "\n";
+
+            for(int j = 0; j < 5; j++)
+            {
+
+                cout << cleansedVec[i][j] << " ";
+
+            }
+
+        }
+
         cout << "\n\n";
     
         cout << "----------[ enderr ]----------"      << endl << endl;
