@@ -2,26 +2,6 @@
 
 using namespace std;
 
-
-/*
- * Complete the 'play2248' function below.
- *
- * The function is expected to return a STRING.
- * The function accepts following parameters:
- *  1. STRING boardValues
- *  2. STRING pathValues
- */
-
-// im gonna leave the site when i want to wtf are you gonna do about it
-
-//if you got something that says i pasted everything here its because im on a different device and for some reason it doesn't save.
-
-
-
-
-
-
-
 vector<vector<int>> util_vectvectint(string input, int flag) 
 {
     // +-----------------------------------+------------------------------------------------+
@@ -36,22 +16,17 @@ vector<vector<int>> util_vectvectint(string input, int flag)
     vector<int>             tempVec;
     
     int x;
+    
     while (ss >> x)
     
-    {
-        
+    { 
         tempVec.push_back(x);
         if(tempVec.size() == 5)
-        
-        {
-            
+        {          
             things.push_back(tempVec);
             tempVec.clear();
-            
-        }
-        
+        } 
     }
-    
     return things;
     
 }
@@ -93,19 +68,13 @@ vector<int> util_vectint(string& input, int flag)
     vector<int>     things;
     
     if(flag == 0)
-    {
-        
+    { 
         while ( getline(ss, idkthingy, ' ' )) 
-        {
-            
+        {  
             things.push_back(stoi(idkthingy));
-            
-        } 
-        
-    }      
-    
+        }    
+    }     
     return things;
-    
 }
 
 
@@ -151,10 +120,8 @@ vector<vector<int>> util_dropTiles(vector<vector<int>>& table)
             {
                 if  (row != lastRow )
                 {
-                    
                     table[lastRow][col] = table[row][col];
                     table[row][col] = 0;
-                    
                 }
                 lastRow--;
             }
@@ -238,7 +205,6 @@ string play2248(string boardValues, string pathValues)
         // +----------------------------------------------+
         // | this cleanses all the tiles that aren't used | also keeps track of the ones that are.
         // +----------------------------------------------+
-        
 
         int cTile                                    = pBoardVec[xCoord - 1][yCoord - 1];
         xCoord                                       = (pValVec.at(i)) / 10;
@@ -246,15 +212,11 @@ string play2248(string boardValues, string pathValues)
         
         
         
-        if (xCoord == (pValVec.back() / 10) && yCoord == (pValVec.back() % 10))
-        {
-        }
+        if (xCoord == (pValVec.back() / 10) && yCoord == (pValVec.back() % 10)){} //idk what i was doin here | note i was high
         
-        else {
-            
+        else {  
             cleansedVec[xCoord - 1][yCoord - 1] = 0;
-            removedValues.push_back(((xCoord) * 10) + yCoord);
-            
+            removedValues.push_back(((xCoord) * 10) + yCoord);  
         }
                                           
     }
