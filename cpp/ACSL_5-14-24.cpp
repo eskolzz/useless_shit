@@ -1,19 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-// | this was my source code for the ACSL juinor division programming problem.  |      finished on may 16 2024      |
-// |----------------------------------------------------------------------------|-----------------------------------|
-// | try not to kill yourself after reading my code (impossible)                | ggwpnore https://nuked.asia/eskol |
-
-
-
 vector<vector<int>> util_vectvectint(string input, int flag) 
 {
     // +-----------------------------------+------------------------------------------------+
     // |            Information            |                   Reasoning                    |
     // +-----------------------------------+------------------------------------------------+
-    // | Fuck this function respectfully.  | didn't work for half the time i was doing this |
+    // | i do not like this function       | didn't work for half the time i was doing this |
     // +-----------------------------------+------------------------------------------------+
 
     stringstream            ss(input);
@@ -44,11 +37,6 @@ vector<vector<int>> util_vectvectint(string input, int flag)
 string util_vectvectint2string(vector<vector<int>> table)
 {
     
-    
-    // +---------------------------------------------------------------------+
-    // | last function i have to write fuck this coding problem this was ass |
-    // +---------------------------------------------------------------------+
-    
     stringstream sigmasigma;
     
     for (auto& row : table) 
@@ -67,11 +55,6 @@ string util_vectvectint2string(vector<vector<int>> table)
 
 vector<int> util_vectint(string& input, int flag) 
 {
-    // +---------------------------------+
-    // | what do mexican programmers use |
-    // +---------------------------------+
-    // | si ++                           |
-    // +---------------------------------+
 
     stringstream    ss(input);
     string          idkthingy;
