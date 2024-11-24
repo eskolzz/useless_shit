@@ -189,9 +189,9 @@ string play2248(string boardValues, string pathValues)
     //<h1> summerupper
     for (int i = 0; i < pValVec.size(); i++)
     {   
-        xCoord                                       = (pValVec.at(i)) / 10;
-        yCoord                                       = (pValVec.at(i)) % 10;
-        sumOfTiles                                   = sumOfTiles += pBoardVec[xCoord - 1][yCoord - 1];
+        xCoord                      = (pValVec.at(i)) / 10;
+        yCoord                      = (pValVec.at(i)) % 10;
+        sumOfTiles                  = sumOfTiles += pBoardVec[xCoord - 1][yCoord - 1];
     }
     
     //<h1\>
@@ -209,15 +209,14 @@ string play2248(string boardValues, string pathValues)
         // | this cleanses all the tiles that aren't used | also keeps track of the ones that are.
         // +----------------------------------------------+
 
-        int cTile                                    = pBoardVec[xCoord - 1][yCoord - 1];
-        xCoord                                       = (pValVec.at(i)) / 10;
-        yCoord                                       = (pValVec.at(i)) % 10;
-        
-        
+        int cTile                   = pBoardVec[xCoord - 1][yCoord - 1];
+        xCoord                      = (pValVec.at(i)) / 10;
+        yCoord                      = (pValVec.at(i)) % 10;
         
         if (xCoord == (pValVec.back() / 10) && yCoord == (pValVec.back() % 10)){} //idk what i was doin here | note i was high
         
-        else {  
+        else 
+        {  
             cleansedVec[xCoord - 1][yCoord - 1] = 0;
             removedValues.push_back(((xCoord) * 10) + yCoord);  
         }
